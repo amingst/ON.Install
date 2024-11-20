@@ -30,9 +30,15 @@ service PaymentInterface {
   }
 }
 
+enum PaymentModes {
+    Subscription = 0;
+    Payment = 1;
+}
+
 message GetNewDetailsRequest {
   uint32 Level = 1;
   string DomainName = 2;
+  optional PaymentModes PaymentMode =  3;
 }
 
 message GetNewDetailsResponse {

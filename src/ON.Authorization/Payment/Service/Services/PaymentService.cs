@@ -1,15 +1,15 @@
-﻿using Grpc.Core;
+﻿using System;
+using System.Threading.Tasks;
+using Grpc.Core;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using ON.Authentication;
-using FakeD = ON.Authorization.Payment.Fake.Data;
-using PaypalD = ON.Authorization.Payment.Paypal.Data;
-using StripeD = ON.Authorization.Payment.Stripe.Data;
 using ON.Fragments.Authorization;
 using ON.Fragments.Authorization.Payment;
 using ON.Fragments.Generic;
-using System;
-using System.Threading.Tasks;
+using FakeD = ON.Authorization.Payment.Fake.Data;
+using PaypalD = ON.Authorization.Payment.Paypal.Data;
+using StripeD = ON.Authorization.Payment.Stripe.Data;
 
 namespace ON.Authorization.Payment.Service
 {
@@ -23,7 +23,14 @@ namespace ON.Authorization.Payment.Service
         private readonly PaypalD.DataMergeService paypalProvider;
         private readonly StripeD.DataMergeService stripeProvider;
 
-        public PaymentService(ILogger<PaymentService> logger, Paypal.Clients.PaypalClient paypalClient, Stripe.Clients.StripeClient stripeClient, FakeD.ISubscriptionRecordProvider fakeProvider, PaypalD.DataMergeService paypalProvider, StripeD.DataMergeService stripeProvider)
+        public PaymentService(
+            ILogger<PaymentService> logger,
+            Paypal.Clients.PaypalClient paypalClient,
+            Stripe.Clients.StripeClient stripeClient,
+            FakeD.ISubscriptionRecordProvider fakeProvider,
+            PaypalD.DataMergeService paypalProvider,
+            StripeD.DataMergeService stripeProvider
+        )
         {
             this.logger = logger;
             this.paypalClient = paypalClient;
@@ -33,7 +40,10 @@ namespace ON.Authorization.Payment.Service
             this.stripeProvider = stripeProvider;
         }
 
-        public override async Task<GetNewDetailsResponse> GetNewDetails(GetNewDetailsRequest request, ServerCallContext context)
+        public override async Task<GetNewDetailsResponse> GetNewDetails(
+            GetNewDetailsRequest request,
+            ServerCallContext context
+        )
         {
             var userToken = ONUserHelper.ParseUser(context.GetHttpContext());
             if (userToken == null)
@@ -46,12 +56,20 @@ namespace ON.Authorization.Payment.Service
             return new()
             {
                 //Paypal = await paypalClient.GetNewDetails(level),
-                Stripe = await stripeClient.GetNewDetails(level, userToken, request.DomainName),
+                Stripe = await stripeClient.GetNewDetails(
+                    level,
+                    userToken,
+                    request.DomainName,
+                    request.PaymentMode
+                ),
             };
         }
 
         [Authorize(Roles = ONUser.ROLE_IS_ADMIN_OR_OWNER_OR_SERVICE_OR_BOT)]
-        public override async Task<GetOtherSubscriptionRecordsResponse> GetOtherSubscriptionRecords(GetOtherSubscriptionRecordsRequest request, ServerCallContext context)
+        public override async Task<GetOtherSubscriptionRecordsResponse> GetOtherSubscriptionRecords(
+            GetOtherSubscriptionRecordsRequest request,
+            ServerCallContext context
+        )
         {
             var userToken = ONUserHelper.ParseUser(context.GetHttpContext());
             if (userToken == null)
@@ -78,7 +96,10 @@ namespace ON.Authorization.Payment.Service
             return res;
         }
 
-        public override async Task<GetOwnSubscriptionRecordsResponse> GetOwnSubscriptionRecords(GetOwnSubscriptionRecordsRequest request, ServerCallContext context)
+        public override async Task<GetOwnSubscriptionRecordsResponse> GetOwnSubscriptionRecords(
+            GetOwnSubscriptionRecordsRequest request,
+            ServerCallContext context
+        )
         {
             var userToken = ONUserHelper.ParseUser(context.GetHttpContext());
             if (userToken == null)
