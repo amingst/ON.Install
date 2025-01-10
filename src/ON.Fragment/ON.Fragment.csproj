@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -69,7 +69,8 @@
     <None Remove="Protos\ON\Fragments\Content\Backup.proto" />
     <None Remove="Protos\ON\Fragments\Content\Content.proto" />
 	<None Remove="Protos\ON\Fragments\Content\ContentRecord.proto" />
-	<None Remove="Protos\ON\Fragments\Content\Video\Rumble\RumbleLivestream.proto" />
+	  <None Remove="Protos\ON\Fragments\Content\Video\Rumble\RumbleLivestream.proto" />
+	  <None Remove="Protos\ON\Fragments\Content\Video\Rumble\RumbleLivestreamRecord.proto" />
     <None Remove="Protos\ON\Fragments\CreatorDashboard\Settings\CreatorSettings.proto" />
     <None Remove="Protos\ON\Fragments\CreatorDashboard\Settings\SettingsManager.proto" />
     <None Remove="Protos\ON\Fragments\CreatorDashboard\Subscribers\Ban.proto" />
@@ -145,6 +146,7 @@
     <Protobuf Include="Protos\ON\Fragments\Content\Backup.proto" />
 	  <Protobuf Include="Protos\ON\Fragments\Content\Content.proto" />
 	  <Protobuf Include="Protos\ON\Fragments\Content\Video\Rumble\RumbleLivestream.proto" />
+	  <Protobuf Include="Protos\ON\Fragments\Content\Video\Rumble\RumbleLivestreamRecord.proto" />
     <Protobuf Include="Protos\ON\Fragments\CreatorDashboard\Settings\CreatorSettings.proto" />
     <Protobuf Include="Protos\ON\Fragments\CreatorDashboard\Settings\SettingsManager.proto" />
     <Protobuf Include="Protos\ON\Fragments\CreatorDashboard\Subscribers\Ban.proto" />

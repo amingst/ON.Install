@@ -3,6 +3,7 @@ using ON.Content.Rumble.Service;
 using ON.Content.Rumble.Service.Models;
 using ON.Content.Video.Rumble.Service.Abstractions;
 using ON.Fragments.Content;
+using ON.Fragments.Content.Video.Rumble;
 using RestSharp;
 
 namespace ON.Content.Video.Rumble.Service.Data

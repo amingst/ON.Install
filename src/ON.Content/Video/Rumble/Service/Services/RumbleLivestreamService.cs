@@ -23,6 +23,12 @@ namespace ON.Content.Video.Rumble.Service.Services
             var provider = new HttpRumbleLivestreamProvider(_logger, _appSettings);
             try
             {
+                var livestreamChannel = await GetRumbleLivestreamChannelUrl(new GetRumbleLivestreamChannelUrlRequest() { ChannelId = request.ChannelId }, context);
+
+                if (livestreamChannel == null) {
+                    return new();
+                }
+
                 var httpResponse = await provider.GetLivestreamAsync(request, context.CancellationToken);
 
                 if (httpResponse == null)
@@ -40,6 +46,31 @@ namespace ON.Content.Video.Rumble.Service.Services
             {
                 provider = null;
             }
+        }
+
+        public override async Task<AddRumbleLivestreamChannelUrlResponse> AddRumbleLivestreamChannelUrl(AddRumbleLivestreamChannelUrlRequest request, ServerCallContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override async Task<EditRumbleLivestreamChannelUrlResponse> EditRumbleLivestreamChannelUrl(EditRumbleLivestreamChannelUrlRequest request, ServerCallContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override async Task<RemoveRumbleLivestreamChannelUrlResponse> RemoveRumbleLivestreamChannelUrl(RemoveRumbleLivestreamChannelUrlRequest request, ServerCallContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override async Task<GetRumbleLivestreamChannelUrlResponse> GetRumbleLivestreamChannelUrl(GetRumbleLivestreamChannelUrlRequest request, ServerCallContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override async Task<ListRumbleLivestreamChannelUrlsResponse> ListRumbleLivestreamChannelUrls(ListRumbleLivestreamChannelUrlsRequest request, ServerCallContext context)
+        {
+            throw new NotImplementedException();
         }
     }
 }

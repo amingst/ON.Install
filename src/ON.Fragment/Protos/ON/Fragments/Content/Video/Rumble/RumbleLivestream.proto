@@ -1,86 +1,20 @@
 syntax = "proto3";
 
 package ON.Fragments.Content.Video.Rumble;
+import "Protos/ON/Fragments/Content/Video/Rumble/RumbleLivestreamRecord.proto";
 
 service RumbleLivestreamInterface {
 	rpc GetLivestream(RumbleLivestreamRequest) returns (RumbleLivestreamResponse);
-}
-
-message RumbleFollowerRecord {
-	string Username = 1;
-	string FollowedOn = 2;
-}
-
-message RumbleLivestreamFollowerData {
-	uint32 NumFollowers = 1;
-	uint32 NumFollowersTotal = 2;
-	RumbleFollowerRecord LatestFollower = 3;
-	repeated RumbleFollowerRecord RecentFollowers = 4;
-}
-
-message RumbleSubscriberRecord {
-	string Username = 1;
-	string User = 2;
-	uint32 AmountCents = 3;
-	uint32 AmountDollars = 4;
-	string SubscribedOn = 5;
-}
-
-message RumbleLivestreamSubscriberData {
-	uint32 NumSubscribers = 1;
-	RumbleSubscriberRecord LatestSubscriber = 2;
-	repeated RumbleSubscriberRecord RecentSubscribers = 3;
-}
-
-message RumbleLivestreamCategory {
-	string Slug = 1;
-	string Title = 2;
-}
-
-message RumbleLivestreamCategoryData {
-	RumbleLivestreamCategory Primary = 1;
-	RumbleLivestreamCategory Secondary = 2;
-}
-
-message RumbleLivestreamChatRecord {
-	string Username = 1;
-	repeated string Badges = 2;
-	string Text = 3;
-	string CreatedOn = 4;
-}
-
-message RumbleLivestreamRantRecord {
-	string Username = 1;
-	repeated string Badges = 2;
-	string Text = 3;
-	string CreatedOn = 4;
-	string ExpiresOn = 5;
-	uint32 AmountCents = 6;
-	uint32 AmountDollars = 7;
-}
-
-message RumbleLivestreamChatData {
-	RumbleLivestreamChatRecord LatestMessage = 1;
-	repeated RumbleLivestreamChatRecord RecentMessages = 2;
-	RumbleLivestreamRantRecord LatestRant = 3;
-	repeated RumbleLivestreamRantRecord RecentRants = 4;
-}
-
-message RumbleLivestreamRecord {
-	string Id = 1;
-	string Title = 2;
-	string CreatedOn = 3;
-	bool IsLive = 4;
-	RumbleLivestreamCategoryData Categories = 5;
-	string StreamKey = 6;
-	uint32 Likes = 7;
-	uint32 Dislikes = 8;
-	uint32 WatchingNow = 9;
-	RumbleLivestreamChatData Chat = 10;
+	rpc AddRumbleLivestreamChannelUrl(AddRumbleLivestreamChannelUrlRequest) returns (AddRumbleLivestreamChannelUrlResponse);
+	rpc EditRumbleLivestreamChannelUrl(EditRumbleLivestreamChannelUrlRequest) returns (EditRumbleLivestreamChannelUrlResponse);
+	rpc RemoveRumbleLivestreamChannelUrl(RemoveRumbleLivestreamChannelUrlRequest) returns (RemoveRumbleLivestreamChannelUrlResponse);
+	rpc GetRumbleLivestreamChannelUrl(GetRumbleLivestreamChannelUrlRequest) returns (GetRumbleLivestreamChannelUrlResponse);
+	rpc ListRumbleLivestreamChannelUrls(ListRumbleLivestreamChannelUrlsRequest) returns (ListRumbleLivestreamChannelUrlsResponse);
 }
 
 message RumbleLivestreamRequest {
-	uint32 MaxNumResults = 1;
+	string ChannelId = 1;
+	uint32 MaxNumResults = 2;
 }
 
 message RumbleLivestreamResponse {
@@ -95,7 +29,43 @@ message RumbleLivestreamResponse {
 	repeated RumbleLivestreamRantRecord Livestreams = 9;
 }
 
-message RumbleLivestreamChannelRecord {
+message AddRumbleLivestreamChannelUrlRequest {
+	RumbleLivestreamChannelRecord Channel = 1;
+}
+
+message AddRumbleLivestreamChannelUrlResponse {
+	bool IsSuccess = 1;
+	string Error = 2;
+}
+
+message EditRumbleLivestreamChannelUrlRequest {
+	RumbleLivestreamChannelRecord Channel = 1;
+}
+
+message EditRumbleLivestreamChannelUrlResponse {
+	bool IsSuccess = 1;
+	string Error = 2;
+}
+
+message RemoveRumbleLivestreamChannelUrlRequest {
 	string ChannelId = 1;
-	string ApiUrl = 2;
+}
+
+message RemoveRumbleLivestreamChannelUrlResponse {
+	bool IsSuccess = 1;
+	string Error = 2;
+}
+
+message GetRumbleLivestreamChannelUrlRequest {
+	string ChannelId = 1;
+}
+
+message GetRumbleLivestreamChannelUrlResponse {
+	RumbleLivestreamChannelRecord Channel = 1;
+}
+
+message ListRumbleLivestreamChannelUrlsRequest {}
+
+message ListRumbleLivestreamChannelUrlsResponse {
+	repeated RumbleLivestreamChannelRecord Channels = 1;
 }
