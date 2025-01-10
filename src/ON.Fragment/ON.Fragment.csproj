@@ -46,6 +46,8 @@
     <None Remove="Protos\ON\Fragments\Content\Stats\StatsSaveInterface.proto" />
     <None Remove="Protos\ON\Fragments\Content\Stats\StatsShareInterface.proto" />
     <None Remove="Protos\ON\Fragments\Content\Stats\StatsViewInterface.proto" />
+    <None Remove="Protos\ON\Fragments\Content\Video\Rumble\Rumble.proto" />
+    <None Remove="Protos\ON\Fragments\Content\Video\Rumble\RumbleVideo.proto" />
     <None Remove="Protos\ON\Fragments\Notification\NotificationInterface.proto" />
     <None Remove="Protos\ON\Fragments\Notification\NotificationUserRecord.proto" />
     <None Remove="Protos\ON\Fragments\Notification\UserNotificationInterface.proto" />
@@ -103,6 +105,8 @@
     <Protobuf Include="Protos\ON\Fragments\Content\AssetRecord.proto" GrpcServices="None" />
     <Protobuf Include="Protos\ON\Fragments\Content\Music\MusicInterface.proto" />
     <Protobuf Include="Protos\ON\Fragments\Content\Music\MusicRecord.proto" GrpcServices="None" />
+    <Protobuf Include="Protos\ON\Fragments\Content\Video\Rumble\Rumble.proto" />
+    <Protobuf Include="Protos\ON\Fragments\Content\Video\Rumble\RumbleVideo.proto" />
     <Protobuf Include="Protos\ON\Fragments\Page\PageRecord.proto" GrpcServices="None" />
     <Protobuf Include="Protos\ON\Fragments\Page\PageInterface.proto" />
     <Protobuf Include="Protos\ON\Fragments\Content\Stats\StatsSaveInterface.proto" />
@@ -166,10 +170,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Protos\ON\Fragments\Content\Video\Rumble\" />
   </ItemGroup>
 
 </Project>

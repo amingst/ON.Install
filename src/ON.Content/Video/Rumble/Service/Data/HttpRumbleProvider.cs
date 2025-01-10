@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using ON.Content.Rumble.Service.Models;
-using ON.Fragments.Content;
+using ON.Fragments.Content.Video.Rumble;
 using RestSharp;
 using System.Text.Json;
 

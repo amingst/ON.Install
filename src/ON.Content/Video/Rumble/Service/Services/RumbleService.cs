@@ -1,5 +1,5 @@
 ﻿using Grpc.Core;
-using ON.Fragments.Content;
+using ON.Fragments.Content.Video.Rumble;
 using ON.Content.Rumble.Service.Data;
 using ON.Content.Rumble.Service.Models;
 using Microsoft.Extensions.Options;
