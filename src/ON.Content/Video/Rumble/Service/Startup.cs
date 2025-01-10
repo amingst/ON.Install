@@ -13,6 +13,7 @@ using ON.Authentication;
 using ON.Content.Rumble.Service.Data;
 using ON.Content.Rumble.Service.Models;
 using ON.Content.Video.Rumble.Service.Abstractions;
+using ON.Content.Video.Rumble.Service.Data;
 using ON.Content.Video.Rumble.Service.Services;
 
 namespace ON.Content.Rumble.Service
@@ -35,11 +36,11 @@ namespace ON.Content.Rumble.Service
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddGrpcHttpApi();
             services.AddSingleton<IFileSystemRumbleProvider, FileSystemRumbleProvider>();
-            services.AddSingleton<IFileSystemRumbleLivestreamChannelProvider, IFileSystemRumbleLivestreamChannelProvider>();
+            services.AddSingleton<IFileSystemRumbleLivestreamChannelProvider, FileSystemRumbleLivestreamChannelProvider>();
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("videorumble", new OpenApiInfo { Title = "Video API: Rumble Layer" });
+                c.SwaggerDoc("rumble", new OpenApiInfo { Title = "Rumble API" });
             });
             services.AddGrpcSwagger();
 
@@ -55,11 +56,11 @@ namespace ON.Content.Rumble.Service
 
             app.UseSwagger(c =>
             {
-                c.RouteTemplate = "api/{documentName}/swagger.json";
+                c.RouteTemplate = "api/video/{documentName}/swagger.json";
             });
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/api/video/rumble/swagger.json", "Video API");
+                c.SwaggerEndpoint("/api/video/rumble/swagger.json", "Rumble Livestream API");
                 c.RoutePrefix = "api/video/rumble";
             });
 

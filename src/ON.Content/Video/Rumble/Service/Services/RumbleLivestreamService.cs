@@ -8,6 +8,7 @@ using ON.Fragments.Content.Video.Rumble;
 
 namespace ON.Content.Video.Rumble.Service.Services
 {
+    // TODO: Add Authentication
     public class RumbleLivestreamService : RumbleLivestreamInterface.RumbleLivestreamInterfaceBase
     {
         private readonly ILogger<ServiceOpsService> _logger;

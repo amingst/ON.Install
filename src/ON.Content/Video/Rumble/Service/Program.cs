@@ -28,8 +28,8 @@ namespace ON.Content.Rumble.Service
                 {
                     webBuilder.ConfigureKestrel(options =>
                     {
-                        options.ListenAnyIP(GetPort(API_PORT_NAME), o => o.Protocols = HttpProtocols.Http1);
-                        options.ListenAnyIP(GetPort(GRPC_PORT_NAME), o => o.Protocols = HttpProtocols.Http2);
+                        options.ListenAnyIP(6100, o => o.Protocols = HttpProtocols.Http1);
+                        options.ListenAnyIP(7100, o => o.Protocols = HttpProtocols.Http2);
                     });
                     webBuilder.UseStartup<Startup>();
                 });

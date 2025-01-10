@@ -1,14 +1,42 @@
 syntax = "proto3";
 
+import "google/api/annotations.proto";
 package ON.Fragments.Content.Video.Rumble;
 import "Protos/ON/Fragments/Content/Video/Rumble/RumbleLivestreamRecord.proto";
 
 service RumbleLivestreamInterface {
-	rpc GetLivestream(RumbleLivestreamRequest) returns (RumbleLivestreamResponse);
-	rpc MutateRumbleLivestreamChannelUrl(MutateRumbleLivestreamChannelUrlRequest) returns (MutateRumbleLivestreamChannelUrlResponse);
-	rpc RemoveRumbleLivestreamChannelUrl(RumbleLivestreamChannelUrlRequest) returns (MutateRumbleLivestreamChannelUrlResponse);
-	rpc GetRumbleLivestreamChannelUrl(RumbleLivestreamChannelUrlRequest) returns (GetRumbleLivestreamChannelUrlResponse);
-	rpc ListRumbleLivestreamChannelUrls(ListRumbleLivestreamChannelUrlsRequest) returns (ListRumbleLivestreamChannelUrlsResponse);
+	rpc GetLivestream(RumbleLivestreamRequest) returns (RumbleLivestreamResponse)
+	{
+		option (google.api.http) = {
+			get: "/api/video/rumble/livestream/{ChannelId}"
+		};
+	}
+	rpc MutateRumbleLivestreamChannelUrl(MutateRumbleLivestreamChannelUrlRequest) returns (MutateRumbleLivestreamChannelUrlResponse)
+	{
+		option (google.api.http) = 
+		{
+			post: "/api/video/rumble/livestream/admin/{Channel.ChannelId}";
+			body: "*"
+		};
+	}
+	rpc RemoveRumbleLivestreamChannelUrl(RumbleLivestreamChannelUrlRequest) returns (MutateRumbleLivestreamChannelUrlResponse) 
+	{
+		option (google.api.http) =
+		{
+			delete: "/api/video/rumble/livestream/admin/{ChannelId}"
+		};
+	}
+	rpc GetRumbleLivestreamChannelUrl(RumbleLivestreamChannelUrlRequest) returns (GetRumbleLivestreamChannelUrlResponse) {
+		option (google.api.http) = 
+		{
+			get: "/api/video/rumble/livestream/admin/{ChannelId}"
+		};
+	}
+	rpc ListRumbleLivestreamChannelUrls(ListRumbleLivestreamChannelUrlsRequest) returns (ListRumbleLivestreamChannelUrlsResponse) {
+		option (google.api.http) = {
+			get: "/api/video/rumble/livestream/admin"
+		};
+	}
 }
 
 message RumbleLivestreamRequest {
