@@ -68,7 +68,8 @@
     <None Remove="Protos\ON\Fragments\Authorization\Payment\Stripe\ProductRecord.proto" />
     <None Remove="Protos\ON\Fragments\Content\Backup.proto" />
     <None Remove="Protos\ON\Fragments\Content\Content.proto" />
-    <None Remove="Protos\ON\Fragments\Content\ContentRecord.proto" />
+	  <None Remove="Protos\ON\Fragments\Content\ContentRecord.proto" />
+	  <None Remove="Protos\ON\Fragments\Content\Rumble.proto" />
     <None Remove="Protos\ON\Fragments\CreatorDashboard\Settings\CreatorSettings.proto" />
     <None Remove="Protos\ON\Fragments\CreatorDashboard\Settings\SettingsManager.proto" />
     <None Remove="Protos\ON\Fragments\CreatorDashboard\Subscribers\Ban.proto" />
@@ -142,7 +143,8 @@
     <Protobuf Include="Protos\ON\Fragments\Content\AudioAssetRecord.proto" GrpcServices="None" />
     <Protobuf Include="Protos\ON\Fragments\Content\ContentRecord.proto" GrpcServices="None" />
     <Protobuf Include="Protos\ON\Fragments\Content\Backup.proto" />
-    <Protobuf Include="Protos\ON\Fragments\Content\Content.proto" />
+	  <Protobuf Include="Protos\ON\Fragments\Content\Content.proto" />
+	  <Protobuf Include="Protos\ON\Fragments\Content\Rumble.proto" />
     <Protobuf Include="Protos\ON\Fragments\CreatorDashboard\Settings\CreatorSettings.proto" />
     <Protobuf Include="Protos\ON\Fragments\CreatorDashboard\Settings\SettingsManager.proto" />
     <Protobuf Include="Protos\ON\Fragments\CreatorDashboard\Subscribers\Ban.proto" />

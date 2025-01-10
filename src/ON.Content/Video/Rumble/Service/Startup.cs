@@ -12,6 +12,7 @@ using Microsoft.OpenApi.Models;
 using ON.Authentication;
 using ON.Content.Rumble.Service.Data;
 using ON.Content.Rumble.Service.Models;
+using ON.Content.Video.Rumble.Service.Services;
 
 namespace ON.Content.Rumble.Service
 {
@@ -67,6 +68,7 @@ namespace ON.Content.Rumble.Service
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<RumbleService>();
+                endpoints.MapGrpcService<RumbleLivestreamService>();
 
                 endpoints.MapGet("/", async context =>
                 {
