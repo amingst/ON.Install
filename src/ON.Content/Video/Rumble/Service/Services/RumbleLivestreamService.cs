@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 using ON.Content.Rumble.Service;
 using ON.Content.Rumble.Service.Models;
 using ON.Content.Video.Rumble.Service.Data;
-using ON.Fragments.Content;
+using ON.Fragments.Content.Video.Rumble;
 
 namespace ON.Content.Video.Rumble.Service.Services
 {
