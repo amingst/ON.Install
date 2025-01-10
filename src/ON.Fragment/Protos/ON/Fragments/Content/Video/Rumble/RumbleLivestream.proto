@@ -5,10 +5,9 @@ import "Protos/ON/Fragments/Content/Video/Rumble/RumbleLivestreamRecord.proto";
 
 service RumbleLivestreamInterface {
 	rpc GetLivestream(RumbleLivestreamRequest) returns (RumbleLivestreamResponse);
-	rpc AddRumbleLivestreamChannelUrl(AddRumbleLivestreamChannelUrlRequest) returns (AddRumbleLivestreamChannelUrlResponse);
-	rpc EditRumbleLivestreamChannelUrl(EditRumbleLivestreamChannelUrlRequest) returns (EditRumbleLivestreamChannelUrlResponse);
-	rpc RemoveRumbleLivestreamChannelUrl(RemoveRumbleLivestreamChannelUrlRequest) returns (RemoveRumbleLivestreamChannelUrlResponse);
-	rpc GetRumbleLivestreamChannelUrl(GetRumbleLivestreamChannelUrlRequest) returns (GetRumbleLivestreamChannelUrlResponse);
+	rpc MutateRumbleLivestreamChannelUrl(MutateRumbleLivestreamChannelUrlRequest) returns (MutateRumbleLivestreamChannelUrlResponse);
+	rpc RemoveRumbleLivestreamChannelUrl(RumbleLivestreamChannelUrlRequest) returns (MutateRumbleLivestreamChannelUrlResponse);
+	rpc GetRumbleLivestreamChannelUrl(RumbleLivestreamChannelUrlRequest) returns (GetRumbleLivestreamChannelUrlResponse);
 	rpc ListRumbleLivestreamChannelUrls(ListRumbleLivestreamChannelUrlsRequest) returns (ListRumbleLivestreamChannelUrlsResponse);
 }
 
@@ -29,35 +28,17 @@ message RumbleLivestreamResponse {
 	repeated RumbleLivestreamRantRecord Livestreams = 9;
 }
 
-message AddRumbleLivestreamChannelUrlRequest {
+message MutateRumbleLivestreamChannelUrlRequest {
 	RumbleLivestreamChannelRecord Channel = 1;
 }
 
-message AddRumbleLivestreamChannelUrlResponse {
-	bool IsSuccess = 1;
-	string Error = 2;
-}
-
-message EditRumbleLivestreamChannelUrlRequest {
-	RumbleLivestreamChannelRecord Channel = 1;
-}
-
-message EditRumbleLivestreamChannelUrlResponse {
-	bool IsSuccess = 1;
-	string Error = 2;
-}
-
-message RemoveRumbleLivestreamChannelUrlRequest {
+message RumbleLivestreamChannelUrlRequest {
 	string ChannelId = 1;
 }
 
-message RemoveRumbleLivestreamChannelUrlResponse {
+message MutateRumbleLivestreamChannelUrlResponse {
 	bool IsSuccess = 1;
 	string Error = 2;
-}
-
-message GetRumbleLivestreamChannelUrlRequest {
-	string ChannelId = 1;
 }
 
 message GetRumbleLivestreamChannelUrlResponse {

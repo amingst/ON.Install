@@ -1,6 +1,6 @@
-﻿using ON.Fragments.Content;
+﻿using ON.Fragments.Content.Video.Rumble;
 
-namespace ON.Content.Rumble.Service.Models
+namespace ON.Content.Video.Rumble.Service.Abstractions
 {
     public interface IFileSystemRumbleProvider
     {

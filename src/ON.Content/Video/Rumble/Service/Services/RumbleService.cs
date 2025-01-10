@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using ON.Authentication;
 using System.Globalization;
 using ON.Content.Video.Rumble.Service.Models;
+using ON.Content.Video.Rumble.Service.Abstractions;
 
 // Todo: Error Handling
 // Todo: Handle Date Range Filter

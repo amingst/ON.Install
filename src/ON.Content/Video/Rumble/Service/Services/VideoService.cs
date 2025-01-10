@@ -5,6 +5,7 @@ using ON.Fragments.Content;
 using ON.Fragments.Generic;
 using ON.Content.Rumble.Service.Models;
 using Microsoft.Extensions.Options;
+using ON.Content.Video.Rumble.Service.Abstractions;
 
 namespace ON.Content.Rumble.Service
 {

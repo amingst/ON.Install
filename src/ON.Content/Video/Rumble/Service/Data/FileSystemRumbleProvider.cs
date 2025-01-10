@@ -1,7 +1,8 @@
 ﻿using Google.Protobuf;
 using Microsoft.Extensions.Options;
 using ON.Content.Rumble.Service.Models;
-using ON.Fragments.Content;
+using ON.Content.Video.Rumble.Service.Abstractions;
+using ON.Fragments.Content.Video.Rumble;
 
 namespace ON.Content.Rumble.Service.Data
 {

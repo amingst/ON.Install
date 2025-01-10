@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Options;
 using ON.Content.Rumble.Service;
 using ON.Content.Rumble.Service.Models;
+using ON.Content.Video.Rumble.Service.Abstractions;
 using ON.Content.Video.Rumble.Service.Data;
 using ON.Fragments.Content.Video.Rumble;
 
@@ -11,11 +12,13 @@ namespace ON.Content.Video.Rumble.Service.Services
     {
         private readonly ILogger<ServiceOpsService> _logger;
         private readonly IOptions<AppSettings> _appSettings;
+        private readonly IFileSystemRumbleLivestreamChannelProvider _channelProvider;
 
-        public RumbleLivestreamService(ILogger<ServiceOpsService> logger, IOptions<AppSettings> appSettings)
+        public RumbleLivestreamService(ILogger<ServiceOpsService> logger, IOptions<AppSettings> appSettings, IFileSystemRumbleLivestreamChannelProvider channelProvider)
         {
             _logger = logger;
             _appSettings = appSettings;
+            _channelProvider = channelProvider;
         }
 
         public override async Task<RumbleLivestreamResponse> GetLivestream(RumbleLivestreamRequest request, ServerCallContext context)
@@ -23,7 +26,7 @@ namespace ON.Content.Video.Rumble.Service.Services
             var provider = new HttpRumbleLivestreamProvider(_logger, _appSettings);
             try
             {
-                var livestreamChannel = await GetRumbleLivestreamChannelUrl(new GetRumbleLivestreamChannelUrlRequest() { ChannelId = request.ChannelId }, context);
+                var livestreamChannel = await GetRumbleLivestreamChannelUrl(new RumbleLivestreamChannelUrlRequest() { ChannelId = request.ChannelId }, context);
 
                 if (livestreamChannel == null) {
                     return new();
@@ -48,29 +51,24 @@ namespace ON.Content.Video.Rumble.Service.Services
             }
         }
 
-        public override async Task<AddRumbleLivestreamChannelUrlResponse> AddRumbleLivestreamChannelUrl(AddRumbleLivestreamChannelUrlRequest request, ServerCallContext context)
+        public override async Task<MutateRumbleLivestreamChannelUrlResponse> MutateRumbleLivestreamChannelUrl(MutateRumbleLivestreamChannelUrlRequest request, ServerCallContext context)
         {
-            throw new NotImplementedException();
+            return await _channelProvider.MutateRumbleLivestreamChannelUrlAsync(request, context.CancellationToken);
         }
 
-        public override async Task<EditRumbleLivestreamChannelUrlResponse> EditRumbleLivestreamChannelUrl(EditRumbleLivestreamChannelUrlRequest request, ServerCallContext context)
+        public override async Task<MutateRumbleLivestreamChannelUrlResponse> RemoveRumbleLivestreamChannelUrl(RumbleLivestreamChannelUrlRequest request, ServerCallContext context)
         {
-            throw new NotImplementedException();
+            return await _channelProvider.RemoveRumbleLivestreamChannelUrlAsync(request, context.CancellationToken);
         }
 
-        public override async Task<RemoveRumbleLivestreamChannelUrlResponse> RemoveRumbleLivestreamChannelUrl(RemoveRumbleLivestreamChannelUrlRequest request, ServerCallContext context)
+        public override async Task<GetRumbleLivestreamChannelUrlResponse> GetRumbleLivestreamChannelUrl(RumbleLivestreamChannelUrlRequest request, ServerCallContext context)
         {
-            throw new NotImplementedException();
-        }
-
-        public override async Task<GetRumbleLivestreamChannelUrlResponse> GetRumbleLivestreamChannelUrl(GetRumbleLivestreamChannelUrlRequest request, ServerCallContext context)
-        {
-            throw new NotImplementedException();
+            return await _channelProvider.GetRumbleLivestreamChannelUrlAsync(request, context.CancellationToken);
         }
 
         public override async Task<ListRumbleLivestreamChannelUrlsResponse> ListRumbleLivestreamChannelUrls(ListRumbleLivestreamChannelUrlsRequest request, ServerCallContext context)
         {
-            throw new NotImplementedException();
+            return await _channelProvider.ListRumbleLivestreamChannelUrlsAsync(request, context.CancellationToken);
         }
     }
 }

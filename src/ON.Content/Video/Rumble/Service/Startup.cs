@@ -12,6 +12,7 @@ using Microsoft.OpenApi.Models;
 using ON.Authentication;
 using ON.Content.Rumble.Service.Data;
 using ON.Content.Rumble.Service.Models;
+using ON.Content.Video.Rumble.Service.Abstractions;
 using ON.Content.Video.Rumble.Service.Services;
 
 namespace ON.Content.Rumble.Service
@@ -34,6 +35,7 @@ namespace ON.Content.Rumble.Service
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddGrpcHttpApi();
             services.AddSingleton<IFileSystemRumbleProvider, FileSystemRumbleProvider>();
+            services.AddSingleton<IFileSystemRumbleLivestreamChannelProvider, IFileSystemRumbleLivestreamChannelProvider>();
 
             services.AddSwaggerGen(c =>
             {
