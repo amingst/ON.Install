@@ -67,7 +67,7 @@ namespace ON.Content.Video.Rumble.Service.Data
             {
                 if (file == null)
                 {
-                    await File.WriteAllBytesAsync(request.Channel.ChannelId, request.Channel.ToByteArray());
+                    await File.WriteAllBytesAsync(_dataDir.FullName + "/" + request.Channel.ChannelId, request.Channel.ToByteArray());
                 }
                 else
                 {

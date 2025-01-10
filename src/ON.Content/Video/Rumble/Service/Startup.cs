@@ -33,16 +33,30 @@ namespace ON.Content.Rumble.Service
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            services.AddLogging(configure => configure.AddConsole());
+
+            services.AddHttpContextAccessor();
+            services.AddControllersWithViews();
+            //services.AddSettingsHelpers();
+
+            services.AddGrpc(options =>
+            {
+                // options.EnableDetailedErrors = true;
+                options.MaxReceiveMessageSize = null;
+                options.MaxSendMessageSize = null;
+            });
+
             services.AddGrpcHttpApi();
-            services.AddSingleton<IFileSystemRumbleProvider, FileSystemRumbleProvider>();
-            services.AddSingleton<IFileSystemRumbleLivestreamChannelProvider, FileSystemRumbleLivestreamChannelProvider>();
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("rumble", new OpenApiInfo { Title = "Rumble API" });
             });
             services.AddGrpcSwagger();
+
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            services.AddSingleton<IFileSystemRumbleProvider, FileSystemRumbleProvider>();
+            services.AddSingleton<IFileSystemRumbleLivestreamChannelProvider, FileSystemRumbleLivestreamChannelProvider>();
 
             services.AddJwtAuthentication();
         }
@@ -73,10 +87,9 @@ namespace ON.Content.Rumble.Service
                 endpoints.MapGrpcService<RumbleService>();
                 endpoints.MapGrpcService<RumbleLivestreamService>();
 
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
-                });
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
 
