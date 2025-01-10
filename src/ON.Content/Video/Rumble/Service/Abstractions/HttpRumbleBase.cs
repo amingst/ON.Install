@@ -3,7 +3,7 @@ using ON.Content.Rumble.Service.Models;
 using ON.Content.Rumble.Service;
 using RestSharp;
 
-namespace ON.Content.Video.Rumble.Service.Data
+namespace ON.Content.Video.Rumble.Service.Abstractions
 {
     public abstract class HttpRumbleBase
     {
